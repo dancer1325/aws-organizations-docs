@@ -1,8 +1,14 @@
 # What is AWS Organizations?<a name="orgs_introduction"></a>
 
-AWS Organizations is an [account](orgs_getting-started_concepts.md#account) management service that enables you to consolidate multiple AWS accounts into an *organization* that you create and centrally manage\. AWS Organizations includes account management and consolidated billing capabilities that enable you to better meet the budgetary, security, and compliance needs of your business\. As an administrator of an organization, you can create accounts in your organization and invite existing accounts to join the organization\. 
-
-This user guide defines [ key concepts for AWS Organizations](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_getting-started_concepts.html), provides [ tutorials](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_tutorials.html), and explains how to [ create and manage an organization](https://docs.aws.amazon.com/organizations/latest/userguide/orgs_manage_org.html)\. 
+* AWS Organizations
+  * == [account](orgs_getting-started_concepts.md#account) management service 
+    * 👀enables you to consolidate MULTIPLE AWS accounts | *organization* / you 👀
+      * create accounts
+      * centrally manage
+        * consolidated billing capabilities
+        * security,
+        * compliance needs
+        * invite EXISTING accounts -- to join the -- organization
 
 **Topics**
 + [AWS Organizations features](#features)
@@ -12,10 +18,9 @@ This user guide defines [ key concepts for AWS Organizations](https://docs.aws.a
 
 ## AWS Organizations features<a name="features"></a>
 
-AWS Organizations offers the following features:
-
+* TODO:
 **Centralized management of all of your AWS accounts**  
-You can combine your existing accounts into an organization that enables you to manage the accounts centrally\. You can create accounts that automatically are a part of your organization, and you can invite other accounts to join your organization\. You also can attach policies that affect some or all of your accounts\. 
+* You can combine your existing accounts into an organization that enables you to manage the accounts centrally\. You can create accounts that automatically are a part of your organization, and you can invite other accounts to join your organization\. You also can attach policies that affect some or all of your accounts\. 
 
 **Consolidated billing for all member accounts**  
 Consolidated billing is a feature of AWS Organizations\. You can use the management account of your organization to consolidate and pay for all member accounts\. In consolidated billing, management accounts can also access the billing information, account information, and account activity of member accounts in their organization\. This information may be used for services such as Cost Explorer, which can help management accounts improve their organization’s cost performance\. 
@@ -47,7 +52,10 @@ You can leverage the multi\-account management services available in AWS Organiz
 When you enable an AWS service to perform tasks on your behalf in your organization's member accounts, AWS Organizations creates an [IAM service\-linked role](http://aws.amazon.com/blogs/security/introducing-an-easier-way-to-delegate-permissions-to-aws-services-service-linked-roles/) for that service in each member account\. The service\-linked role has predefined IAM permissions that allow the other AWS service to perform specific tasks in your organization and its accounts\. For this to work, all accounts in an organization automatically have a [service\-linked role](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html?icmpid=docs_iam_console#iam-term-service-linked-role)\. This role enables the AWS Organizations service to create the service\-linked roles required by AWS services for which you enable trusted access\. These additional service\-linked roles are attached to IAM permission policies that enable the specified service to perform only those tasks that are required by your configuration choices\. For more information, see [Using AWS Organizations with other AWS services](orgs_integrate_services.md)\.
 
 **Global access**  
-AWS Organizations is a global service with a single endpoint that works from any and all AWS Regions\. You don't need to explicitly select a region to operate in\. 
+* AWS Organizations
+  * GLOBAL service /
+    * 1! endpoint / -- works from -- ANY and ALL AWS Regions
+      * -> 👀NOT need to explicitly select a region 👀 
 
 **Data replication that is eventually consistent**  
 AWS Organizations, like many other AWS services, is [eventually consistent](https://wikipedia.org/wiki/Eventual_consistency)\. AWS Organizations achieves high availability by replicating data across multiple servers in AWS data centers within its Region\. If a request to change some data is successful, the change is committed and safely stored\. However, the change must then be replicated across the multiple servers\. For more information, see [Changes that I make aren't always immediately visible](orgs_troubleshoot_general.md#troubleshoot_general_eventual-consistency)\.
@@ -57,20 +65,35 @@ AWS Organizations is a feature of your AWS account offered at no additional char
 
 ## AWS Organizations pricing<a name="pricing"></a>
 
-AWS Organizations is offered at no additional charge\. You are charged only for AWS resources that users and roles in your member accounts use\. For example, you are charged the standard fees for Amazon EC2 instances that are used by users or roles in your member accounts\. For information about the pricing of other AWS services, see [AWS Pricing](https://aws.amazon.com/pricing/services/)\.
+* NO additional charge
+* charged only for AWS resources / your member accounts' users and roles use
 
 ## Accessing AWS Organizations<a name="how-to-access"></a>
 
-You can work with AWS Organizations in any of the following ways:
-
 **AWS Management Console**  
-[The AWS Organizations console](https://console.aws.amazon.com/organizations/) is a browser\-based interface that you can use to manage your organization and your AWS resources\. You can perform any task in your organization by using the console\.
+* [AWS Organizations console](https://console.aws.amazon.com/organizations/)
+  * == browser\-based interface /
+    * allows
+      * manage your
+        * organization
+        * AWS resources 
+      * perform ANY task
 
-**AWS Command Line Tools**  
-With the AWS command line tools, you can issue commands at your system's command line to perform AWS Organizations and AWS tasks\. Working with the command line can be faster and more convenient than using the console\. The command line tools also are useful if you want to build scripts that perform AWS tasks\.  
-AWS provides two sets of command line tools:  
-+  [AWS Command Line Interface](https://aws.amazon.com/cli/) \(AWS CLI\)\. For information about installing and using the AWS CLI, see the [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)\.
-+  [AWS Tools for Windows PowerShell](https://aws.amazon.com/powershell/)\. For information about installing and using the Tools for Windows PowerShell, see the [AWS Tools for Windows PowerShell User Guide](https://docs.aws.amazon.com/powershell/latest/userguide/)\.
+**AWS CL Tools**  
+* allows
+  * issue commands | your system's CL -- to perform -- 
+    * AWS Organizations
+    * AWS tasks 
+* vs Console
+  * faster
+  * more convenient 
+* uses
+  * build scripts / perform AWS tasks
+* types  
+  + [AWS CLI](https://aws.amazon.com/cli/)
+    + see [AWS Command Line Interface User Guide](https://docs.aws.amazon.com/cli/latest/userguide/)
+  + [AWS Tools for Windows PowerShell](https://aws.amazon.com/powershell/)
+    + see the [AWS Tools for Windows PowerShell User Guide](https://docs.aws.amazon.com/powershell/latest/userguide/)
 
 **AWS SDKs**  
 The AWS SDKs consist of libraries and sample code for various programming languages and platforms \(for example, Java, Python, Ruby, \.NET, iOS, and Android\)\. The SDKs take care of tasks such as cryptographically signing requests, managing errors, and retrying requests automatically\. For more information about the AWS SDKs, including how to download and install them, see [Tools for Amazon Web Services](https://aws.amazon.com/tools/#sdk)\.
@@ -83,7 +106,6 @@ The AWS Organizations HTTPS Query API gives you programmatic access to AWS Organ
 We welcome your feedback\. You can send your comments to [feedback\-awsorganizations@amazon\.com](mailto:feedback-awsorganizations@amazon.com)\. You also can post your feedback and questions in [AWS Organizations support forum](https://forums.aws.amazon.com/forum.jspa?forumID=219)\. For more information about the AWS Support forums, see [Forums Help](https://forums.aws.amazon.com/help.jspa)\.
 
 ### Other AWS resources<a name="other-resources"></a>
-
 
 + **[AWS Training and Courses](https://aws.amazon.com/training/course-descriptions/)** – Links to role\-based and specialty courses as well as self\-paced labs to help sharpen your AWS skills and gain practical experience\.
 + **[AWS Developer Tools](https://aws.amazon.com/developertools/)** – Links to developer tools and resources that provide documentation, code examples, release notes, and other information to help you build innovative applications with AWS\.
