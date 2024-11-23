@@ -1,15 +1,28 @@
 # AWS Organizations terminology and concepts<a name="orgs_getting-started_concepts"></a>
 
-To help you get started with AWS Organizations, this topic explains some of the key concepts\. 
-
-The following diagram shows a basic organization that consists of five accounts that are organized into four organizational units \(OUs\) under the root\. The organization also has several policies that are attached to some of the OUs or directly to accounts\. For a description of each of these items, refer to the definitions in this topic\.
-
-![\[Diagram of basic organization\]](http://docs.aws.amazon.com/organizations/latest/userguide/images/AccountOuDiagram.png)
+* _Example:_ basic organization /
+  * 5 accounts
+  * organized into 4 organizational units \(OUs\) | root
+  * SEVERAL policies / -- attached to -- 
+    * SOME of the OUs or
+    * directly to accounts
+    ![\[Diagram of basic organization\]](http://docs.aws.amazon.com/organizations/latest/userguide/images/AccountOuDiagram.png)
 
 **Organization**  <a name="org"></a>
-An entity that you create to consolidate your AWS [accounts](#account) so that you can administer them as a single unit\. You can use the [AWS Organizations console](https://console.aws.amazon.com/organizations/) to centrally view and manage all of your accounts within your organization\. An organization has one management account along with zero or more member accounts\. You can organize the accounts in a hierarchical, tree\-like structure with a [root](#root) at the top and [organizational units](#organizationalunit) nested under the root\. Each account can be directly in the root, or placed in one of the OUs in the hierarchy\. An organization has the functionality that is determined by the [feature set](#feature-set) that you enable\. 
+* := entity / you create to consolidate your AWS [accounts](#account)
+  * -> you can administer them -- as a -- 1! unit
+* [AWS Organizations console](https://console.aws.amazon.com/organizations/)
+  * centrally view and manage ALL of your organization's accounts
+* == 1 management account + >=0 member accounts /
+  * accounts -- can be organized -- hierarchically
+    * _Example:_ tree\-like structure / [root](#root) | top + [organizational units](#organizationalunit) / nested | root
+    * EACH account can be placed |
+      * root or
+      * OUs 
+* functionality -- is determined by the -- [feature set](#feature-set) / you enable 
 
 **Root**  <a name="root"></a>
+* TODO:
 The parent container for all the accounts for your organization\. If you apply a policy to the root, it applies to all [organizational units \(OUs\)](#organizationalunit) and [accounts](#account) in the organization\.  
 Currently, you can have only one root\. AWS Organizations automatically creates it for you when you create an organization\.
 
@@ -17,19 +30,29 @@ Currently, you can have only one root\. AWS Organizations automatically creates 
 A container for [accounts](#account) within a [root](#root)\. An OU also can contain other OUs, enabling you to create a hierarchy that resembles an upside\-down tree, with a root at the top and branches of OUs that reach down, ending in accounts that are the leaves of the tree\. When you attach a policy to one of the nodes in the hierarchy, it flows down and affects all the branches \(OUs\) and leaves \(accounts\) beneath it\. An OU can have exactly one parent, and currently each account can be a member of exactly one OU\.
 
 **Account**  <a name="account"></a>
-An account in Organizations is a standard AWS account that contains your AWS resources and the identities that can access those resources\.   
-An AWS account isn't the same thing as a user account\. An [AWS user](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users) is an identity that you create using AWS Identity and Access Management \(IAM\) and takes the form of either an [IAM user with long\-term credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html), or an [IAM role with short\-term credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles.html)\. A single AWS account can, and typically does contain many users and roles\.
-There are two types of accounts in an organization: a single account that is designated as the management account, and one or more member accounts\.  
-+ The **management account** is the account that you use to create the organization\. From the organization's management account, you can do the following:
-  + Create accounts in the organization
-  + Invite other existing accounts to the organization
-  + Remove accounts from the organization
-  + Manage invitations
-  + Apply policies to entities \(roots, OUs, or accounts\) within the organization
-  + Enable integration with supported AWS services to provide service functionality across all of the accounts in the organization\.
-
-  The management account has the responsibilities of a *payer account* and is responsible for paying all charges that are accrued by the member accounts\. You can't change an organization's management account\.
-+ **Member accounts** make up all of the rest of the accounts in an organization\. An account can be a member of only one organization at a time\. You can attach a policy to an account to apply controls to only that one account\. 
+* Account | Organizations
+  * 👀== standard AWS account / contains your 👀
+    * AWS resources
+    * identities (users & roles) / -- can access -- those resources
+* AWS account != user account
+  * [AWS user](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction_identity-management.html#intro-identity-users)
+* types of accounts | organization 
+  + **management account**
+    + 1! account / 
+      + create the organization
+      + create accounts | organization
+      + invite other existing accounts | organization
+      + remove accounts -- from the -- organization
+      + manage invitations
+      + apply policies -- to -- entities \(roots, OUs, or accounts\) | organization
+      + enable integration -- with -- supported AWS services / provide
+        + service functionality ACROSS ALL accounts | organization
+      + *payer account*
+        + == pay ALL charges / accrued by the member accounts
+  + **Member accounts**
+    + == REST of the accounts | organization
+    + member ONLY of 1 organization | time
+    + if you attach a policy | account -> apply controls | ONLY that one account 
 
 **Invitation**  <a name="invite"></a>
 The process of asking another [account](#account) to join your [organization](#org)\. An invitation can be issued only by the organization's management account\. The invitation is extended to either the account ID or the email address that is associated with the invited account\. After the invited account accepts an invitation, it becomes a member account in the organization\. Invitations also can be sent to all current member accounts when the organization needs all members to approve the change from supporting only [consolidated billing](#feature-set-cb-only) features to supporting [all features](#feature-set-all) in the organization\. Invitations work by accounts exchanging [handshakes](#handshake)\. You might not see handshakes when you work in the AWS Organizations console\. But if you use the AWS CLI or AWS Organizations API, you must work directly with handshakes\.
